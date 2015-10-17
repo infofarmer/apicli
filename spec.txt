@@ -1,0 +1,42 @@
+Structure:
+
+* Core
+* OAuth handling
+  * OAuth endpoint dictionaries
+* API shorthands
+  * per–service dictionaries
+
+
+Syntax:
+
+* take some hints from httpie and uson
+* fanatically laconic and intuitive
+* Unix-like modularity - with mashups in mind
+
+
+Examples:
+
+api youtube
+
+vimeo put channels 959814 videos 121634150
+
+ph posts all
+
+google youtube v3 playlists part=snippet,contentDetails mine=true
+
+(possible shorthands:)
+yt put channel 123 video 123
+yt put <videoid> <channelid>
+
+
+Popular service shorthands:
+
+vimeo -> api vimeo
+ph -> api ph -> api producthunt
+yt -> api yt -> api youtube -(maybe)-> api google youtube
+g -> api g -> api google
+fb
+tw
+bing
+gh
+etc.
