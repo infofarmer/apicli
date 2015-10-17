@@ -1,0 +1,33 @@
+#!/bin/sh
+
+. ~/.googlerc
+
+case $1 in
+	delete|put|get|post)
+		method=`echo $1 | tr '[:lower:]' '[:upper:]'`
+		shift
+		;;
+esac
+
+if [ "$1" = data ]; then
+	args="$args -F @-;type=application/json"
+	shift
+fi
+
+for p; do
+	if [ -z "${p%%*=*}" ] ; then
+		query="$query $p"
+	else
+		path="$path $p"
+	fi
+done
+
+path=`echo ${path# } | tr ' ' '/'`
+query=`echo ${query# } | tr ' ' '&'`
+
+curl -v\
+	-# \
+	-H "Authorization: Bearer $key" \
+	-X ${method:-GET} \
+	$args \
+	"https://www.googleapis.com/$path?$query" | less
